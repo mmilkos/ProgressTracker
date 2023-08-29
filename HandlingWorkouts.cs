@@ -13,7 +13,7 @@ namespace ProgressTracker
         public Exercise CreateExercise()
         {
             Exercise exercise = new Exercise();
-
+            //wdwawdawdawd
             while (true)
             {
                 Console.WriteLine("Name of the exercise: ");
