@@ -13,6 +13,7 @@ namespace ProgressTracker
         private float weight;
         private int reps;
         private DateTime date;
+        //test
 
         public string Name
         {

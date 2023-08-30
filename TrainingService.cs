@@ -15,7 +15,10 @@ namespace ProgressTracker
 
             while (true)
             {
-            
+                Console.WriteLine("What would you like to do? ");
+                Console.WriteLine("1. Add exercise");
+                Console.WriteLine("2. see your progress");
+                
                 var exercise = handlingWorkouts.CreateExercise();
                 handlingWorkouts.AddExerciseToWorkout(exercise);
                
