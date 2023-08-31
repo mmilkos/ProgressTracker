@@ -28,7 +28,7 @@ namespace ProgressTracker
                 }
                 else
                 {
-                    Console.WriteLine("Nieprawidłowy format daty.");
+                    Console.WriteLine("Invalid date format.");
                 }
 
             }
@@ -55,7 +55,7 @@ namespace ProgressTracker
         private string CalculateOneRepMax(float weight, int reps) 
         {
             float floatReps = Convert.ToSingle(reps);
-            float oneRepMaxFloat = (float)(weight / (1.0278 - 0.278 * floatReps));
+            float oneRepMaxFloat = (float)(weight * (0.0333 * floatReps));
             string oneRepmax = oneRepMaxFloat.ToString();
             return oneRepmax;
         }
@@ -70,11 +70,14 @@ namespace ProgressTracker
             Console.WriteLine("Progress from wchich exercise do you want to see? ");
             List<string> namesOfExercises = new List<string>();
             var names = ExercisesList.Select(x => x.Name).Distinct().ToList();
+
             if(ExercisesList != null) 
             {
+                int count = 1;
                 foreach (var item in names)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine(count.ToString() + item);
+                    count++;
                 }
 
 
@@ -85,17 +88,23 @@ namespace ProgressTracker
 
                     if (userChoice == item.Name)
                     {
+                        Console.WriteLine(" ");
                         Console.WriteLine(item.Name);
                         Console.WriteLine(item.Date);
-                        Console.WriteLine(item.Weight);
-                        Console.WriteLine(item.Reps);
-                        Console.WriteLine(CalculateOneRepMax(item.Weight, item.Reps));
+                        Console.WriteLine("Weight: " + item.Weight);
+                        Console.WriteLine("Reps: " + item.Reps);
+                        Console.WriteLine("Calculated one rep max: " + CalculateOneRepMax(item.Weight, item.Reps));
                         Console.WriteLine(" ");
 
                     }
 
                 }
+                
 
+            }
+            else
+            {
+                Console.WriteLine("No exercises added");
             }
 
         }
