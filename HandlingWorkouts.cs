@@ -31,34 +31,42 @@ namespace ProgressTracker
                     Console.WriteLine("Invalid date format. Please use the format dd/mm/yyyy.");
                 }
             }
-
             Console.WriteLine("How many sets: ");
             string sets = Console.ReadLine();
-            exercise.Sets = int.Parse(sets);
+            if (sets != null)
+            {
+                exercise.Sets = int.Parse(sets);
+            }
+            
 
             Console.WriteLine("How many reps: ");
             string reps = Console.ReadLine();
-            exercise.Reps = int.Parse(reps);
-
+            if (reps != null)
+            {
+                exercise.Reps = int.Parse(reps);
+            }
+            
             Console.WriteLine("What weight was used?: ");
             string weight = Console.ReadLine();
-
-            if (float.TryParse(weight, out float floatWeight))
+            if (sets != null)
             {
-                exercise.Weight = floatWeight;
+                exercise.Weight = float.Parse(weight);
             }
+            
 
             exercise.OneRepMax = CalculateOneRepMax(exercise.Weight, exercise.Reps);
+           
+
 
             return exercise;
         }
 
-        private string CalculateOneRepMax(float weight, int reps) 
+        private float CalculateOneRepMax(float weight, int reps) 
         {
+            //50kg * 5 = 58kg
             float floatReps = Convert.ToSingle(reps);
             float oneRepMaxFloat = (float)(weight * (1 + 0.0333 * floatReps));
-            string oneRepmax = oneRepMaxFloat.ToString("F1");
-            return oneRepmax;
+            return oneRepMaxFloat;
         }
 
         public void AddExerciseToList(Exercise exercise)
@@ -94,7 +102,7 @@ namespace ProgressTracker
                         Console.WriteLine(item.Date.ToString("dd/MM/yyyy"));
                         Console.WriteLine("Weight: " + item.Weight + "KG");
                         Console.WriteLine("Reps: " + item.Reps);
-                        Console.WriteLine("Calculated one rep max: " + item.OneRepMax + "KG");
+                        Console.WriteLine("Calculated one rep max: " + item.OneRepMax.ToString() + "KG");
                         
                     }
                 }
