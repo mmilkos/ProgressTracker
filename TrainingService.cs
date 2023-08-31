@@ -12,6 +12,7 @@ namespace ProgressTracker
         {
             HandlingWorkouts handlingWorkouts = new HandlingWorkouts();
             Console.WriteLine("Welcome in GymTracker!");
+            Console.WriteLine(" ");
 
             while (true)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,20 +18,18 @@ namespace ProgressTracker
             string name = Console.ReadLine();
             exercise.Name = name;
           
-            
             while (true) 
             {
-                Console.WriteLine("Enter the date of the exercise (yyyy-mm-dd): ");
-                if (DateTime.TryParse(Console.ReadLine(), out DateTime inputDate))
+                Console.WriteLine("Enter the date of the exercise (dd/mm/yyyy): ");
+                if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inputDate))
                 {
                     exercise.Date = inputDate;
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid date format.");
+                    Console.WriteLine("Invalid date format. Please use the format dd/mm/yyyy.");
                 }
-
             }
 
             Console.WriteLine("How many sets: ");
@@ -48,14 +47,14 @@ namespace ProgressTracker
             {
                 exercise.Weight = floatWeight;
             }
-
             return exercise;
         }
 
         private string CalculateOneRepMax(float weight, int reps) 
         {
+            //50kg * 5 = 58kg
             float floatReps = Convert.ToSingle(reps);
-            float oneRepMaxFloat = (float)(weight * (0.0333 * floatReps));
+            float oneRepMaxFloat = (float)(weight * (1 + 0.0333 * floatReps));
             string oneRepmax = oneRepMaxFloat.ToString();
             return oneRepmax;
         }
@@ -63,6 +62,7 @@ namespace ProgressTracker
         public void AddExerciseToWorkout(Exercise exercise)
         {
             ExercisesList.Add(exercise);
+            ExercisesList.Sort((x,y) => x.Date.CompareTo(y.Date));
         }
 
         public void DisplayProgress()
@@ -76,10 +76,9 @@ namespace ProgressTracker
                 int count = 1;
                 foreach (var item in names)
                 {
-                    Console.WriteLine(count.ToString() + item);
+                    Console.WriteLine(count.ToString() +"." + item);
                     count++;
                 }
-
 
                 string userChoice = Console.ReadLine();
 
@@ -90,24 +89,18 @@ namespace ProgressTracker
                     {
                         Console.WriteLine(" ");
                         Console.WriteLine(item.Name);
-                        Console.WriteLine(item.Date);
-                        Console.WriteLine("Weight: " + item.Weight);
+                        Console.WriteLine(item.Date.ToString("dd/MM/yyyy"));
+                        Console.WriteLine("Weight: " + item.Weight + "KG");
                         Console.WriteLine("Reps: " + item.Reps);
-                        Console.WriteLine("Calculated one rep max: " + CalculateOneRepMax(item.Weight, item.Reps));
-                        Console.WriteLine(" ");
-
+                        Console.WriteLine("Calculated one rep max: " + CalculateOneRepMax(item.Weight, item.Reps) + "KG");
+                        
                     }
-
                 }
-                
-
             }
             else
             {
                 Console.WriteLine("No exercises added");
             }
-
         }
     }
-
 }
