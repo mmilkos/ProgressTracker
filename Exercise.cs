@@ -9,32 +9,16 @@ namespace ProgressTracker
     internal class Exercise
     {
         private string name;
-        private int sets;
-        private float weight;
-        private int reps;
         private DateTime date;
-        //test
-
+        private float weight;
+        private float oneRepMax;
+        private int sets;
+        private int reps;
+  
         public string Name
         {
             get { return name; }
             set { name = value; }
-        }
-        public int Sets 
-        {
-            get { return sets; }
-            set { sets = value; }
-        }
-        public float Weight 
-        {
-            get { return weight; }
-            set { weight = value; }
-        }
-
-        public int Reps
-        {
-            get { return reps; }
-            set { reps = value; }
         }
 
         public DateTime Date
@@ -42,5 +26,32 @@ namespace ProgressTracker
             get { return date; }
             set { date = value; }
         }
+
+        public float Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
+        public float OneRepMax
+        {
+            get { return oneRepMax; }
+            set { oneRepMax = value; }
+        }
+
+        public int Sets 
+        {
+            get { return sets; }
+            set { sets = value; }
+        }
+        
+
+        public int Reps
+        {
+            get { return reps; }
+            set { reps = value; }
+        }
+
+       
     }
 }

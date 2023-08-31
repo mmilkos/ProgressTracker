@@ -25,7 +25,7 @@ namespace ProgressTracker
                 if (userChoice == "1") 
                 {
                     var exercise = handlingWorkouts.CreateExercise();
-                    handlingWorkouts.AddExerciseToWorkout(exercise);
+                    handlingWorkouts.AddExerciseToList(exercise);
                 }
                 else if (userChoice == "2") 
                 {

@@ -47,19 +47,21 @@ namespace ProgressTracker
             {
                 exercise.Weight = floatWeight;
             }
+
+            exercise.OneRepMax = CalculateOneRepMax(exercise.Weight, exercise.Reps);
+
             return exercise;
         }
 
         private string CalculateOneRepMax(float weight, int reps) 
         {
-            //50kg * 5 = 58kg
             float floatReps = Convert.ToSingle(reps);
             float oneRepMaxFloat = (float)(weight * (1 + 0.0333 * floatReps));
             string oneRepmax = oneRepMaxFloat.ToString("F1");
             return oneRepmax;
         }
 
-        public void AddExerciseToWorkout(Exercise exercise)
+        public void AddExerciseToList(Exercise exercise)
         {
             ExercisesList.Add(exercise);
             ExercisesList.Sort((x,y) => x.Date.CompareTo(y.Date));
@@ -92,7 +94,7 @@ namespace ProgressTracker
                         Console.WriteLine(item.Date.ToString("dd/MM/yyyy"));
                         Console.WriteLine("Weight: " + item.Weight + "KG");
                         Console.WriteLine("Reps: " + item.Reps);
-                        Console.WriteLine("Calculated one rep max: " + CalculateOneRepMax(item.Weight, item.Reps) + "KG");
+                        Console.WriteLine("Calculated one rep max: " + item.OneRepMax + "KG");
                         
                     }
                 }
