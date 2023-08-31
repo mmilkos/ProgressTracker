@@ -55,7 +55,7 @@ namespace ProgressTracker
             //50kg * 5 = 58kg
             float floatReps = Convert.ToSingle(reps);
             float oneRepMaxFloat = (float)(weight * (1 + 0.0333 * floatReps));
-            string oneRepmax = oneRepMaxFloat.ToString();
+            string oneRepmax = oneRepMaxFloat.ToString("F1");
             return oneRepmax;
         }
 
